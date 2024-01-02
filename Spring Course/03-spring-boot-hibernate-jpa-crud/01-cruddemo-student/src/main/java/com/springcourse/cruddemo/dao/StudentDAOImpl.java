@@ -2,7 +2,6 @@ package com.springcourse.cruddemo.dao;
 
 import com.springcourse.cruddemo.entity.Student;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +54,19 @@ public class StudentDAOImpl implements StudentDAO{
 
         //execute query
         return findByLastNameQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void update(Student theStudent) {
+        entityManager.merge(theStudent);
+    }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+        Student theStudent = findById(id);
+        entityManager.remove(theStudent);
     }
 
 }

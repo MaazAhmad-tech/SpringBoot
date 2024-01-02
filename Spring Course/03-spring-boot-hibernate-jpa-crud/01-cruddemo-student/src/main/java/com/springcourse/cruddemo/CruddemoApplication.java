@@ -28,10 +28,13 @@ public class CruddemoApplication {
 
 			//findAllStudents(studentDAO);
 
-			findStudentByLastName(studentDAO);
+			//findStudentByLastName(studentDAO);
+
+			//updateStudent(studentDAO);
+
+			deleteStudent(studentDAO);
 		};
 	}
-
 
 	//CREATE
 	private void createMultipleStudents(StudentDAO studentDAO) {
@@ -108,5 +111,31 @@ public class CruddemoApplication {
 		}
 	}
 
+	//UPDATE
+
+	private void updateStudent(StudentDAO studentDAO) {
+
+		int studentId = 1;
+		System.out.println("Updating the Student with the Id : " + studentId);
+
+		Student foundStudent = studentDAO.findById(1);
+		System.out.println("Student found with Id : " + studentId + "is : " +foundStudent);
+
+		foundStudent.setLastName("Timothy");
+		studentDAO.update(foundStudent);
+
+		System.out.println("Updated student is : " + foundStudent);
+
+	}
+
+	//DELETE
+	private void deleteStudent(StudentDAO studentDAO)
+	{
+		int studentId = 6;
+		System.out.println("Deleting the Student with Id : " + studentId);
+
+		studentDAO.delete(studentId);
+		System.out.println("Student with Id : " + studentId + "deleted Successfully!!");
+	}
 
 }
